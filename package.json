@@ -1,8 +1,9 @@
 {
   "name": "keyword-context",
-  "displayName": "keyword-context",
+  "displayName": "Keyword Context",
   "description": "Provides user-supplied hover context for keywords detected in the editor.",
   "version": "0.0.1",
+  "icon": "icon.png",
   "engines": {
     "vscode": "^1.81.0"
   },
@@ -22,26 +23,22 @@
           "default": [
             {
               "keyword": "541258e6_06dd_4fdc_9219_4d25c37a5807",
-              "tooltip": "A fruit that is red or green."
+              "tooltip": "This table contains user data."
             },
             {
               "keyword": "e12e10bd_2b5d_4a0a_99bc_9e06fe508cb6",
-              "tooltip": "A blue fruit tomango."
+              "tooltip": "This table contains system data."
             },
             {
-              "keyword": "63538ca0_f558_4802_8c32_894931ffd52a",
-              "tooltip": "A yellow fruit that is rich in potassium."
-            },
-            {
-              "keyword": "82ad40d6_03b7_48f0_be55_918d01ee3329",
-              "tooltip": "Yet another thing that is orange."
+              "keyword": "63538ca0_f558_4802_8c32_894931ffd52a_82ad40d6_03b7_48f0_be55_918d01ee3329",
+              "tooltip": "This field contains a description of the data source."
             },
             {
               "keyword": "holy_hand_granade",
-              "tooltip": "This badly named function deletes all files in the subfolder /test/ with the extention .py"
+              "tooltip": "This badly named function deletes all files in the subfolder /tests/ with the extention .py"
             }
           ],
-          "description": "Add keywords and their tooltips to setting.json"
+          "description": "Add keywords and their tooltips to settings.json"
         }
       }
     }
