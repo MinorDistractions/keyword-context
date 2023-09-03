@@ -10,8 +10,6 @@ export function activate(context: vscode.ExtensionContext) {
   function findTooltipByKeyword(keywordToFind: string): string | undefined {
     keywordTooltips = vscode.workspace.getConfiguration('map').get('lookup');
 
-    console.log('keywordTooltips: ' + keywordTooltips);
-
     for (const item of keywordTooltips!) {
       if (item.keyword === keywordToFind) {
         return item.tooltip;
@@ -34,11 +32,12 @@ export function activate(context: vscode.ExtensionContext) {
 
       if (tooltip) {
         const hoverRange = new vscode.Range(position, position);
-        const hover = new vscode.Hover(
-          tooltip + ' | Keyword Context',
+        const hoverText = new vscode.MarkdownString(tooltip, true);
+
+        return new vscode.Hover(
+          hoverText.appendMarkdown(' *(Keyword Context)*'),
           hoverRange
         );
-        return hover;
       }
 
       return undefined;
