@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "icon": "icon.png",
   "engines": {
-    "vscode": "^1.81.0"
+    "vscode": "^1.67.0"
   },
   "categories": [
     "Other"
@@ -52,7 +52,7 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.81.0",
+    "@types/vscode": "^1.67.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
