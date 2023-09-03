@@ -11,7 +11,10 @@ export function activate(context: vscode.ExtensionContext) {
     keywordTooltips = vscode.workspace.getConfiguration('map').get('lookup');
 
     for (const item of keywordTooltips!) {
-      if (item.keyword === keywordToFind) {
+      if (
+        item.keyword === keywordToFind ||
+        '.' + item.keyword === keywordToFind
+      ) {
         return item.tooltip;
       }
     }
