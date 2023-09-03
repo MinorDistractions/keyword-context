@@ -1,9 +1,7 @@
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log(
-    'Congratulations, your extension "keyword-context" is now active!'
-  );
+  console.log('Extension "keyword-context" is now active');
 
   let keywordTooltips: { keyword: string; tooltip: string }[] | undefined;
 
@@ -31,7 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
       const word = document.getText(wordRange);
       const tooltip = findTooltipByKeyword(word);
 
-      console.log(`word: ${word}, tooltip: ${tooltip}`);
+      // console.log(`word: ${word}, tooltip: ${tooltip}`);
 
       if (tooltip) {
         const hoverRange = new vscode.Range(position, position);
