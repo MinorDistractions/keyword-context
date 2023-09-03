@@ -1,0 +1,69 @@
+{
+  "name": "keyword-context",
+  "displayName": "keyword-context",
+  "description": "Provides user-supplied hover context for keywords detected in the editor.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.81.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Map",
+      "properties": {
+        "map.lookup": {
+          "type": "array",
+          "default": [
+            {
+              "keyword": "541258e6_06dd_4fdc_9219_4d25c37a5807",
+              "tooltip": "A fruit that is red or green."
+            },
+            {
+              "keyword": "e12e10bd_2b5d_4a0a_99bc_9e06fe508cb6",
+              "tooltip": "A blue fruit tomango."
+            },
+            {
+              "keyword": "63538ca0_f558_4802_8c32_894931ffd52a",
+              "tooltip": "A yellow fruit that is rich in potassium."
+            },
+            {
+              "keyword": "82ad40d6_03b7_48f0_be55_918d01ee3329",
+              "tooltip": "Yet another thing that is orange."
+            },
+            {
+              "keyword": "holy_hand_granade",
+              "tooltip": "This badly named function deletes all files in the subfolder /test/ with the extention .py"
+            }
+          ],
+          "description": "Add keywords and their tooltips to setting.json"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.81.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "eslint": "^8.47.0",
+    "glob": "^10.3.3",
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.6",
+    "@vscode/test-electron": "^2.3.4"
+  }
+}
