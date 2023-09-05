@@ -32,13 +32,13 @@ export function activate(context: vscode.ExtensionContext) {
       .get('source-toggle');
   }
 
-  function findTooltipByKeyword(keywordToFind: string): string | undefined {
+  function findTooltipsByKeyword(keywordToFind: string): KeywordTooltip[] {
     const normalizedKeyword = keywordToFind.toLowerCase();
-    return keywordTooltips.find(
+    return keywordTooltips.filter(
       (item) =>
         item.keyword.toLowerCase() === normalizedKeyword ||
         '.' + item.keyword.toLowerCase() === normalizedKeyword
-    )?.tooltip;
+    );
   }
 
   const hoverProvider = vscode.languages.registerHoverProvider('*', {
@@ -48,13 +48,18 @@ export function activate(context: vscode.ExtensionContext) {
 
       if (!word) return;
 
-      const tooltip = findTooltipByKeyword(word);
-      if (!tooltip) return;
+      const matchedTooltips = findTooltipsByKeyword(word);
 
-      const hoverText = new vscode.MarkdownString(tooltip, true);
+      if (!matchedTooltips.length) return;
+
+      const hoverText = new vscode.MarkdownString('', true);
+
+      for (const tooltip of matchedTooltips) {
+        hoverText.appendMarkdown(`- ${tooltip.tooltip}\n`);
+      }
 
       if (sourceToggle) {
-        hoverText.appendMarkdown(' *(Keyword Context)*');
+        hoverText.appendMarkdown('\n*(Keyword Context)*');
       }
 
       return new vscode.Hover(hoverText, wordRange);
