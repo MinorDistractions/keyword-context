@@ -18,7 +18,7 @@
     "configuration": {
       "title": "Map",
       "properties": {
-        "map.lookup": {
+        "keyword-context.map": {
           "type": "array",
           "default": [
             {
@@ -39,6 +39,11 @@
             }
           ],
           "description": "Add keywords and their tooltips to settings.json"
+        },
+        "keyword-context.source-toggle": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show the source of the tooltip on hover."
         }
       }
     }

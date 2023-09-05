@@ -3,45 +3,61 @@ import * as vscode from 'vscode';
 export function activate(context: vscode.ExtensionContext) {
   console.log('Extension "keyword-context" is now active');
 
-  let keywordTooltips: { keyword: string; tooltip: string }[] | undefined;
+  interface KeywordTooltip {
+    keyword: string;
+    tooltip: string;
+  }
+
+  let keywordTooltips: KeywordTooltip[] = fetchKeywordTooltips();
+  let sourceToggle: boolean = fetchSourceToggle();
+
+  vscode.workspace.onDidChangeConfiguration((event) => {
+    if (event.affectsConfiguration('keyword-context.map')) {
+      keywordTooltips = fetchKeywordTooltips();
+    }
+    if (event.affectsConfiguration('keyword-context.source-toggle')) {
+      sourceToggle = fetchSourceToggle();
+    }
+  });
+
+  function fetchKeywordTooltips(): KeywordTooltip[] {
+    return (
+      vscode.workspace.getConfiguration('keyword-context').get('map') || []
+    );
+  }
+
+  function fetchSourceToggle(): boolean {
+    return !!vscode.workspace
+      .getConfiguration('keyword-context')
+      .get('source-toggle');
+  }
 
   function findTooltipByKeyword(keywordToFind: string): string | undefined {
-    keywordTooltips = vscode.workspace.getConfiguration('map').get('lookup');
-
-    for (const item of keywordTooltips!) {
-      if (
-        item.keyword === keywordToFind ||
-        '.' + item.keyword === keywordToFind
-      ) {
-        return item.tooltip;
-      }
-    }
-    return undefined;
+    const normalizedKeyword = keywordToFind.toLowerCase();
+    return keywordTooltips.find(
+      (item) =>
+        item.keyword.toLowerCase() === normalizedKeyword ||
+        '.' + item.keyword.toLowerCase() === normalizedKeyword
+    )?.tooltip;
   }
 
   const hoverProvider = vscode.languages.registerHoverProvider('*', {
     provideHover(document, position) {
       const wordRange = document.getWordRangeAtPosition(position);
-      if (!wordRange) {
-        return undefined;
-      }
-
       const word = document.getText(wordRange);
+
+      if (!word) return;
+
       const tooltip = findTooltipByKeyword(word);
+      if (!tooltip) return;
 
-      // console.log(`word: ${word}, tooltip: ${tooltip}`);
+      const hoverText = new vscode.MarkdownString(tooltip, true);
 
-      if (tooltip) {
-        const hoverRange = new vscode.Range(position, position);
-        const hoverText = new vscode.MarkdownString(tooltip, true);
-
-        return new vscode.Hover(
-          hoverText.appendMarkdown(' *(Keyword Context)*'),
-          hoverRange
-        );
+      if (sourceToggle) {
+        hoverText.appendMarkdown(' *(Keyword Context)*');
       }
 
-      return undefined;
+      return new vscode.Hover(hoverText, wordRange);
     },
   });
 
