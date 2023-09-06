@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "icon": "icon.png",
   "engines": {
-    "vscode": "^1.67.0"
+    "vscode": "^1.60.1"
   },
   "categories": [
     "Other"
@@ -22,28 +22,16 @@
           "type": "array",
           "default": [
             {
-              "keyword": "541258e6_06dd_4fdc_9219_4d25c37a5807",
-              "tooltip": "This table contains user data."
+              "keyword": "some_badly_named_variable",
+              "tooltip": "This variable is used for..."
             },
             {
-              "keyword": "e12e10bd_2b5d_4a0a_99bc_9e06fe508cb6",
-              "tooltip": "Second tooltip."
+              "keyword": "some_badly_named_function",
+              "tooltip": "This function does..."
             },
             {
-              "keyword": "e12e10bd_2b5d_4a0a_99bc_9e06fe508cb6",
-              "tooltip": "Yet another tooltip."
-            },
-            {
-              "keyword": "e12e10bd_2b5d_4a0a_99bc_9e06fe508cb6",
-              "tooltip": "This table contains system data."
-            },
-            {
-              "keyword": "63538ca0_f558_4802_8c32_894931ffd52a_82ad40d6_03b7_48f0_be55_918d01ee3329",
-              "tooltip": "This field contains a description of the data source."
-            },
-            {
-              "keyword": "holy_hand_granade",
-              "tooltip": "This badly named function deletes all files in the subfolder /tests/ with the extention .py"
+              "keyword": "ID_234873",
+              "tooltip": "This ID refers to..."
             }
           ],
           "description": "Add keywords and their tooltips to settings.json"
@@ -65,7 +53,7 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.67.0",
+    "@types/vscode": "^1.60.1",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
     "@typescript-eslint/eslint-plugin": "^6.4.1",

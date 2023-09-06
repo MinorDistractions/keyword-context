@@ -3,12 +3,12 @@ import * as vscode from 'vscode';
 export function activate(context: vscode.ExtensionContext) {
   console.log('Extension "keyword-context" is now active');
 
-  interface KeywordTooltip {
+  interface Context {
     keyword: string;
     tooltip: string;
   }
 
-  let keywordTooltips: KeywordTooltip[] = fetchKeywordTooltips();
+  let keywordTooltips: Context[] = fetchKeywordTooltips();
   let sourceToggle: boolean = fetchSourceToggle();
 
   vscode.workspace.onDidChangeConfiguration((event) => {
@@ -20,7 +20,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
   });
 
-  function fetchKeywordTooltips(): KeywordTooltip[] {
+  function fetchKeywordTooltips(): Context[] {
     return (
       vscode.workspace.getConfiguration('keyword-context').get('map') || []
     );
@@ -32,7 +32,7 @@ export function activate(context: vscode.ExtensionContext) {
       .get('source-toggle');
   }
 
-  function findTooltipsByKeyword(keywordToFind: string): KeywordTooltip[] {
+  function findTooltipsByKeyword(keywordToFind: string): Context[] {
     const normalizedKeyword = keywordToFind.toLowerCase();
     return keywordTooltips.filter(
       (item) =>
