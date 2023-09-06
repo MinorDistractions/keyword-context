@@ -1,9 +1,19 @@
-# Change Log
+# Changelog
 
-All notable changes to the "keyword-context" extension will be documented in this file.
+**Please see https://github.com/microsoft/vscode-black-formatter/releases for the latest release notes.**
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## Future updates
 
-## [Unreleased]
-
-- Initial release
+- [x] map > keywordcontext, lookup > map
+- [x] Toggle if extension name appears in tooltip
+- [x] compare lowercase to lowercased keyword
+- [x] Define an object interface
+- [x] List multiple matches in tooltips
+- [ ] Make code more modular
+- [x] Documentation
+- [x] Icon attribution
+- [ ] Find oldest version of VScode it's compatible with
+- [ ] Use testing suite
+- [ ] Validate inputs
+- [ ] Usage GIFs
+- [ ] Publish extension
